@@ -1,0 +1,287 @@
+    <section x-data="{ 'showContent': false, 'scrollContent': false, }"
+      class="relative z-20 overflow-hidden pt-22.5 lg:pt-27.5 xl:pt-32.5 2xl:pt-45 pb-20">
+      <div class="max-w-[1170px] mx-auto px-4 sm:px-8 xl:px-0">
+        <!-- section title -->
+        <div class="wow fadeInUp mb-15 text-center">
+          <span
+            class="hero-subtitle-gradient relative mb-4 font-medium text-sm inline-flex items-center gap-2 py-2 px-4.5 rounded-full">
+            <img src="images/icon-title.svg" alt="icon">
+
+            <span class="hero-subtitle-text"> Wall of love </span>
+          </span>
+          <h2 class="text-white mb-4.5 text-2xl font-extrabold sm:text-4xl xl:text-heading-2">
+            What Our User Says
+          </h2>
+          <p class="max-w-[714px] mx-auto font-medium">
+            Real feedback from happy clients who trust CODIOLOGY for their digital needs.
+          </p>
+        </div>
+
+        <div @scroll.window="scrollContent = (scrollY > $el.offsetTop - 500) ? true : false"
+          :class="{ 'max-h-[855px] overflow-hidden' :!showContent }"
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7.5">
+          <!-- user column -->
+          <div class="space-y-7.5">
+            <!-- user item -->
+            <div class="user-border-gradient relative overflow-hidden px-8 py-9 rounded-[19px]">
+              <div class="flex items-center gap-4.5">
+                <div class="max-w-[48px] w-full h-12 rounded-full">
+                  <img src="images/user-01.png" alt="user" />
+                </div>
+                <div>
+                  <h5 class="text-white text-sm font-medium">
+                    Tanvir Ahmed
+                  </h5>
+                  <p class="font-medium text-sm">@tanvir</p>
+                </div>
+              </div>
+
+              <div class="user-divider relative my-6 w-full h-[1px]"></div>
+
+              <p>
+                "CODIOLOGY developed our eCommerce app within the promised time. Super professional!"
+              </p>
+
+              <!-- bg shapes -->
+              <div class="absolute -z-10 pointer-events-none inset-0 overflow-hidden">
+                <span class="absolute right-0 bottom-0 -z-1">
+                  <img src="images/blur-18.svg" alt="blur" class="max-w-none">
+                </span>
+              </div>
+            </div>
+
+            <!-- user item -->
+            <div class="user-border-gradient relative overflow-hidden px-8 py-9 rounded-[19px]">
+              <div class="flex items-center gap-4.5">
+                <div class="max-w-[48px] w-full h-12 rounded-full">
+                  <img src="images/user-02.png" alt="user" />
+                </div>
+                <div>
+                  <h5 class="text-white text-sm font-medium">
+                    Farzana Islam
+                  </h5>
+                  <p class="font-medium text-sm">@farzana</p>
+                </div>
+              </div>
+
+              <div class="user-divider relative my-6 w-full h-[1px]"></div>
+
+              <p>
+                "Their web templates are modern, responsive, and easy to use. Perfect for our agency site."
+              </p>
+
+              <p class="mt-6">
+                Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry.
+              </p>
+
+              <!-- bg shapes -->
+              <div class="absolute -z-10 pointer-events-none inset-0 overflow-hidden">
+                <span class="absolute right-0 bottom-0 -z-1">
+                  <img src="images/blur-18.svg" alt="blur" class="max-w-none">
+                </span>
+              </div>
+            </div>
+
+            <!-- user item -->
+            <div class="user-border-gradient relative overflow-hidden px-8 py-9 rounded-[19px]">
+              <div class="flex items-center gap-4.5">
+                <div class="max-w-[48px] w-full h-12 rounded-full">
+                  <img src="images/user-03.png" alt="user" />
+                </div>
+                <div>
+                  <h5 class="text-white text-sm font-medium">
+                    Sabbir Hossain
+                  </h5>
+                  <p class="font-medium text-sm">@sabbir</p>
+                </div>
+              </div>
+
+              <div class="user-divider relative my-6 w-full h-[1px]"></div>
+
+              <p>
+                "They built a game for our brand campaign — it went viral! Loved the creativity."
+              </p>
+
+              <!-- bg shapes -->
+              <div class="absolute -z-10 pointer-events-none inset-0 overflow-hidden">
+                <span class="absolute right-0 bottom-0 -z-1">
+                  <img src="images/blur-18.svg" alt="blur" class="max-w-none">
+                </span>
+              </div>
+            </div>
+
+            <!-- user item -->
+            <div class="user-border-gradient relative overflow-hidden px-8 py-9 rounded-[19px]">
+              <div class="flex items-center gap-4.5">
+                <div class="max-w-[48px] w-full h-12 rounded-full">
+                  <img src="images/user-04.png" alt="user" />
+                </div>
+                <div>
+                  <h5 class="text-white text-sm font-medium">
+                    Rumana Akter
+                  </h5>
+                  <p class="font-medium text-sm">@rumana</p>
+                </div>
+              </div>
+
+              <div class="user-divider relative my-6 w-full h-[1px]"></div>
+
+              <p>
+                "Our restaurant website now looks so polished, and we’re getting more online orders than ever!"
+              </p>
+
+              <!-- bg shapes -->
+              <div class="absolute -z-10 pointer-events-none inset-0 overflow-hidden">
+                <span class="absolute right-0 bottom-0 -z-1">
+                  <img src="images/blur-18.svg" alt="blur" class="max-w-none">
+                </span>
+              </div>
+            </div>
+
+            <!-- user item -->
+            <div class="user-border-gradient relative overflow-hidden px-8 py-9 rounded-[19px]">
+              <div class="flex items-center gap-4.5">
+                <div class="max-w-[48px] w-full h-12 rounded-full">
+                  <img src="images/user-05.png" alt="user" />
+                </div>
+                <div>
+                  <h5 class="text-white text-sm font-medium">
+                    Rafiul Islam
+                  </h5>
+                  <p class="font-medium text-sm">@rafiul</p>
+                </div>
+              </div>
+
+              <div class="user-divider relative my-6 w-full h-[1px]"></div>
+
+              <p>
+                "Solid backend development team. The admin panel works like a charm. Highly recommended."
+              </p>
+
+              <!-- bg shapes -->
+              <div class="absolute -z-10 pointer-events-none inset-0 overflow-hidden">
+                <span class="absolute right-0 bottom-0 -z-1">
+                  <img src="images/blur-18.svg" alt="blur" class="max-w-none">
+                </span>
+              </div>
+            </div>
+
+            <!-- user item -->
+            <div class="user-border-gradient relative overflow-hidden px-8 py-9 rounded-[19px]">
+              <div class="flex items-center gap-4.5">
+                <div class="max-w-[48px] w-full h-12 rounded-full">
+                  <img src="images/user-06.png" alt="user" />
+                </div>
+                <div>
+                  <h5 class="text-white text-sm font-medium">
+                    Arman Chowdhury
+                  </h5>
+                  <p class="font-medium text-sm">@arman</p>
+                </div>
+              </div>
+
+              <div class="user-divider relative my-6 w-full h-[1px]"></div>
+
+              <p>
+                "CODIOLOGY handled everything — app UI, backend, deployment. Very smooth experience."
+              </p>
+
+              <!-- bg shapes -->
+              <div class="absolute -z-10 pointer-events-none inset-0 overflow-hidden">
+                <span class="absolute right-0 bottom-0 -z-1">
+                  <img src="images/blur-18.svg" alt="blur" class="max-w-none">
+                </span>
+              </div>
+            </div>
+
+            <!-- user item -->
+            <div class="user-border-gradient relative overflow-hidden px-8 py-9 rounded-[19px]">
+              <div class="flex items-center gap-4.5">
+                <div class="max-w-[48px] w-full h-12 rounded-full">
+                  <img src="images/user-07.png" alt="user" />
+                </div>
+                <div>
+                  <h5 class="text-white text-sm font-medium">
+                    Nasrin Jahan  
+                  </h5>
+                  <p class="font-medium text-sm">@nasrin</p>
+                </div>
+              </div>
+
+              <div class="user-divider relative my-6 w-full h-[1px]"></div>
+
+              <p>
+                "As a small business, budget was tight. They still gave us a beautiful website within our range."
+              </p>
+
+              <!-- bg shapes -->
+              <div class="absolute -z-10 pointer-events-none inset-0 overflow-hidden">
+                <span class="absolute right-0 bottom-0 -z-1">
+                  <img src="images/blur-18.svg" alt="blur" class="max-w-none">
+                </span>
+              </div>
+            </div>
+
+            <!-- user item -->
+            <div class="user-border-gradient relative overflow-hidden px-8 py-9 rounded-[19px]">
+              <div class="flex items-center gap-4.5">
+                <div class="max-w-[48px] w-full h-12 rounded-full">
+                  <img src="images/user-08.png" alt="user" />
+                </div>
+                <div>
+                  <h5 class="text-white text-sm font-medium">
+                    Tariq Mahmud
+                  </h5>
+                  <p class="font-medium text-sm">@tariq</p>
+                </div>
+              </div>
+
+              <div class="user-divider relative my-6 w-full h-[1px]"></div>
+
+              <p>
+                "Game development was top-notch. Smooth performance and great art direction!"
+              </p>
+
+              <!-- bg shapes -->
+              <div class="absolute -z-10 pointer-events-none inset-0 overflow-hidden">
+                <span class="absolute right-0 bottom-0 -z-1">
+                  <img src="images/blur-18.svg" alt="blur" class="max-w-none">
+                </span>
+              </div>
+            </div>
+
+            <!-- user item -->
+            <div class="user-border-gradient relative overflow-hidden px-8 py-9 rounded-[19px]">
+              <div class="flex items-center gap-4.5">
+                <div class="max-w-[48px] w-full h-12 rounded-full">
+                  <img src="images/user-09.png" alt="user" />
+                </div>
+                <div>
+                  <h5 class="text-white text-sm font-medium">
+                    Shimul Hasan
+                  </h5>
+                  <p class="font-medium text-sm">@shimul</p>
+                </div>
+              </div>
+
+              <div class="user-divider relative my-6 w-full h-[1px]"></div>
+
+              <p>
+                "Very responsive support team. They fixed a bug in our app within hours. Impressive!"
+              </p>
+
+              <!-- bg shapes -->
+              <div class="absolute -z-10 pointer-events-none inset-0 overflow-hidden">
+                <span class="absolute right-0 bottom-0 -z-1">
+                  <img src="images/blur-18.svg" alt="blur" class="max-w-none">
+                </span>
+              </div>
+            </div>
+          </div>
+
+         
+            </div>
+          </div>
+        </div>
+    </section>
