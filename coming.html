@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon... With Your Files!</title>
+    
+    <!-- Google Fonts: Poppins for body, Roboto Mono for a techy feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- CSS Reset & Basic Setup --- */
+        :root {
+            --bg-color: #f0f2f5;
+            --text-color: #1c1e21;
+            --header-bg: #ffffff;
+            --card-bg: #ffffff;
+            --primary-color: #007bff;
+            --primary-hover: #0056b3;
+            --secondary-color: #6c757d;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --cube-face-bg: rgba(255, 255, 255, 0.8);
+            --cube-icon-color: #007bff;
+            --toggle-bg: #dcdcdc;
+            --toggle-fg: #ffffff;
+            --toggle-icon: "☀️";
+        }
+
+        html[data-theme='dark'] {
+            --bg-color: #121212;
+            --text-color: #e4e6eb;
+            --header-bg: #1e1e1e;
+            --card-bg: #1e1e1e;
+            --primary-color: #00aaff;
+            --primary-hover: #0077b3;
+            --secondary-color: #b0b3b8;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --cube-face-bg: rgba(40, 40, 40, 0.85);
+            --cube-icon-color: #00aaff;
+            --toggle-bg: #555;
+            --toggle-fg: #1e1e1e;
+            --toggle-icon: "🌙";
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* --- Header / Navbar --- */
+        .navbar {
+            background-color: var(--header-bg);
+            box-shadow: 0 2px 10px var(--shadow-color);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .navbar .logo {
+            font-family: 'Roboto Mono', monospace;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .navbar .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .navbar a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .navbar a:hover {
+            background-color: var(--bg-color);
+        }
+
+        /* --- Theme Toggle Switch --- */
+        .theme-switch-wrapper {
+            display: flex;
+            align-items: center;
+        }
+        .theme-switch {
+            display: inline-block;
+            height: 34px;
+            position: relative;
+            width: 60px;
+        }
+        .theme-switch input {
+            display:none;
+        }
+        .slider {
+            background-color: var(--toggle-bg);
+            bottom: 0;
+            cursor: pointer;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            background-color: var(--toggle-fg);
+            bottom: 4px;
+            content: var(--toggle-icon);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 26px;
+            left: 4px;
+            position: absolute;
+            transition: .4s;
+            width: 26px;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+        input:checked + .slider {
+            background-color: var(--toggle-bg);
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px var(--shadow-color);
+            transform: translateY(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px var(--shadow-color);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(45deg, var(--primary-color), #ff4d4d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1.25rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+        }
+
+        .description {
+            color: var(--secondary-color);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .home-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.3s;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+        }
+        
+        .home-button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        /* --- 3D Cube --- */
+        .scene {
+            width: 150px;
+            height: 150px;
+            perspective: 600px;
+            margin: 40px auto;
+        }
+
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateCube 15s infinite linear;
+        }
+
+        .cube__face {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: var(--cube-face-bg);
+            border: 1px solid var(--primary-color);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 4rem;
+            color: var(--cube-icon-color);
+            transition: background 0.3s, border 0.3s, color 0.3s;
+        }
+
+        .cube__face--front  { transform: rotateY(  0deg) translateZ(75px); }
+        .cube__face--right  { transform: rotateY( 90deg) translateZ(75px); }
+        .cube__face--back   { transform: rotateY(180deg) translateZ(75px); }
+        .cube__face--left   { transform: rotateY(-90deg) translateZ(75px); }
+        .cube__face--top    { transform: rotateX( 90deg) translateZ(75px); }
+        .cube__face--bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+        @keyframes rotateCube {
+            from { transform: rotateX(0deg) rotateY(0deg); }
+            to   { transform: rotateX(360deg) rotateY(360deg); }
+        }
+
+        /* --- Footer --- */
+        .footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            background-color: var(--header-bg);
+            border-top: 1px solid var(--shadow-color);
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .subtitle {
+                font-size: 1rem;
+            }
+            .container {
+                padding: 30px 20px;
+            }
+            .home-button {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            .scene {
+                width: 120px;
+                height: 120px;
+                margin: 30px auto;
+            }
+            .cube__face {
+                width: 120px;
+                height: 120px;
+                font-size: 3rem;
+            }
+            .cube__face--front  { transform: rotateY(  0deg) translateZ(60px); }
+            .cube__face--right  { transform: rotateY( 90deg) translateZ(60px); }
+            .cube__face--back   { transform: rotateY(180deg) translateZ(60px); }
+            .cube__face--left   { transform: rotateY(-90deg) translateZ(60px); }
+            .cube__face--top    { transform: rotateX( 90deg) translateZ(60px); }
+            .cube__face--bottom { transform: rotateX(-90deg) translateZ(60px); }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .subtitle {
+                font-size: 0.9rem;
+            }
+            .container {
+                padding: 20px 15px;
+            }
+            .scene {
+                width: 100px;
+                height: 100px;
+            }
+            .cube__face {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5rem;
+            }
+            .cube__face--front  { transform: rotateY(  0deg) translateZ(50px); }
+            .cube__face--right  { transform: rotateY( 90deg) translateZ(50px); }
+            .cube__face--back   { transform: rotateY(180deg) translateZ(50px); }
+            .cube__face--left   { transform: rotateY(-90deg) translateZ(50px); }
+            .cube__face--top    { transform: rotateX( 90deg) translateZ(50px); }
+            .cube__face--bottom { transform: rotateX(-90deg) translateZ(50px); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <a href="https://codiology-soft.netlify.app/" class="logo">Codiology Inc.</a>
+        <div class="nav-links">
+            <a href="/index.html">Learnix (Under maintenance break)</a>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <div class="slider"></div>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="scene">
+                <div class="cube">
+                    <div class="cube__face cube__face--front"><i class="fa-solid fa-file-invoice"></i></div>
+                    <div class="cube__face cube__face--back"><i class="fa-solid fa-lock"></i></div>
+                    <div class="cube__face cube__face--right"><i class="fa-solid fa-image"></i></div>
+                    <div class="cube__face cube__face--left"><i class="fa-solid fa-key"></i></div>
+                    <div class="cube__face cube__face--top"><i class="fa-solid fa-folder-open"></i></div>
+                    <div class="cube__face cube__face--bottom"><i class="fa-solid fa-skull-crossbones"></i></div>
+                </div>
+            </div>
+
+            <h1>Coming Soon...</h1>
+            <p class="subtitle">...with your valuable files</p>
+            <p class="description">
+                We're just borrowing them for a... major upgrade. You'll get them back. Probably.
+                In the meantime, feel free to visit our perfectly normal homepage.
+            </p>
+            <a href="/index.html" class="home-button">Go to Homepage</a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        © 2025 Codiology Incorporated. All rights reserved (and your files too).
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeToggle = document.getElementById('checkbox');
+            const currentTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            // Function to set the theme
+            function setTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                if (theme === 'dark') {
+                    themeToggle.checked = true;
+                } else {
+                    themeToggle.checked = false;
+                }
+            }
+
+            // Determine initial theme
+            if (currentTheme) {
+                // Use saved theme
+                setTheme(currentTheme);
+            } else if (prefersDark) {
+                // Use system preference
+                setTheme('dark');
+            } else {
+                // Default to light
+                setTheme('light');
+            }
+
+            // Add event listener for the toggle
+            themeToggle.addEventListener('change', () => {
+                if (themeToggle.checked) {
+                    setTheme('dark');
+                } else {
+                    setTheme('light');
+                }
+            });
+
+            // Listen for changes in system preference
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                const newColorScheme = e.matches ? 'dark' : 'light';
+                // Only change if the user hasn't manually set a theme
+                if (!localStorage.getItem('theme')) {
+                   setTheme(newColorScheme);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

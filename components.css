@@ -610,7 +610,7 @@
   width: 1px;
 }
 .w-full {
-  width: 100%;
+  width: 90%;
 }
 .max-w-50 {
   max-width: 12.5rem;
@@ -3085,7 +3085,7 @@
   }
 
   .lg\:w-3\/4 {
-    width: 75%;
+    width: 100%;
   }
 
   .lg\:-translate-x-1\/3 {
