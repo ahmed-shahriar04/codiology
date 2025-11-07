@@ -74,7 +74,7 @@
               class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient flex items-center justify-between gap-3"
               @click.prevent="dropdown = !dropdown"
               :class="{ '!text-white nav-gradient': page === 'about' || page === 'pricing' || page === 'blog-grid' || page === 'blog-single' || page === 'signin' || page === 'signup' || page === '404' }">
-              Another Websites
+              Our Services
 
               <svg class="fill-current w-3 h-3 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                 <path
@@ -85,31 +85,27 @@
             <!-- Dropdown Start -->
             <ul class="dropdown" :class="{ 'flex': dropdown }">
               <li>
+                <a href="/web_development.html"
+                  class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5"
+                  :class="{ '!text-white bg-white/5': page === 'about' }">Web Development</a>
+              </li>
+              <li>
                 <a href="https://codiologyappstore.netlify.app/"
                   class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5"
-                  :class="{ '!text-white bg-white/5': page === 'about' }">Codiology Appstore</a>
+                  :class="{ '!text-white bg-white/5': page === 'pricing' }">App Development</a>
               </li>
               <li>
-                <a href="https://learnix-web.netlify.app/"
+                <a href="/software.html"
                   class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5"
-                  :class="{ '!text-white bg-white/5': page === 'pricing' }">Learnix University</a>
+                  :class="{ '!text-white bg-white/5': page === 'blog-grid' }">Software Development</a>
               </li>
               <li>
-                <a href="https://prismplaytv.netlify.app/"
+                <a href="/coming.html"
                   class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5"
-                  :class="{ '!text-white bg-white/5': page === 'blog-grid' }">PrismPlay</a>
-              </li>
-              <li>
-                <a href="https://moviedepot.netlify.app/"
-                  class="flex text-sm text-white/70 hover:text-white py-2 px-4 rounded-md hover:bg-white/5"
-                  :class="{ '!text-white bg-white/5': page === 'blog-single' }">MovieDepot</a>
+                  :class="{ '!text-white bg-white/5': page === 'blog-single' }">Game Development</a>
               </li>
             </ul>
             <!-- Dropdown End -->
-          </li>
-          <li class="nav__menu lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }">
-            <a href="moreServices.html"
-              class="relative text-white/80 text-sm py-1.5 px-4 border border-transparent hover:text-white hover:nav-gradient">More Services From Us</a>
           </li>
           <li class="nav__menu lg:py-7" :class="{ 'lg:!py-4' : stickyMenu }">
             <a href="developers.html"
@@ -141,6 +137,7 @@
   <main>
     <!-- ===== Hero Section Start ===== -->
     <section id="home" class="relative overflow-hidden z-10 pt-35 md:pt-40 xl:pt-45" data-aos="fade-up">
+      <div class="absolute inset-0 bg-black opacity-70 -z-10"></div>
       <!-- Hero Bg Shapes -->
       <div class="max-w-7xl mx-auto">
         <div class="absolute -z-10 pointer-events-none inset-0 overflow-hidden -mx-28">
@@ -181,14 +178,23 @@
             class="hero-button-gradient inline-flex rounded-lg py-3 px-7 text-white font-medium ease-in duration-300 hover:opacity-80" data-aos="fade-up" data-aos-delay="400">
             Build with CODIOLOGY
           </a>
+          <div style="margin-top: 20px;" class="mt-8 flex justify-center" data-aos="fade-up" data-aos-delay="500">
+            <video id="hero-video" class="hero-video" autoplay loop muted playsinline preload="auto" poster="images/hero.svg">
+              <source src="video/Codiology_Promo.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </div>
-
-      <div class="mt-17" data-wow-delay="0.1s" data-aos="fade-up" data-aos-delay="500">
-        <img class="mx-auto" src="images/hero.svg" alt="hero" />
-      </div>
+      <!-- <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+        <button id="mute-toggle"
+          class="bg-white/20 backdrop-blur-lg text-white text-sm py-2 px-4 rounded-full hover:bg-white/30 transition duration-300">
+          Press to Unmute
+        </button>
+      </div> -->
     </section>
     <!-- ===== Hero Section End ===== -->
+
 
     <!-- ===== features grid Section Start ===== -->
     <section id="features" class="overflow-hidden pt-17.5 lg:pt-22.5 xl:pt-27.5 scroll-mt-17" data-aos="fade-up">
@@ -1296,6 +1302,17 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init();
+  </script>
+
+  <script>
+    // Event listener for scrolling to mute video
+    window.addEventListener('scroll', function() {
+      // Check if video exists and is currently unmuted
+      if (video && !video.muted) {
+        video.muted = true;
+        muteToggle.textContent = 'Press to Unmute';
+      }
+    });
   </script>
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"9a6015d415bb4773a0bff22543062d3b","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
