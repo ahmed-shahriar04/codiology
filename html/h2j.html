@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy H2J - Codiology Store</title>
+    <link rel="icon" href="images/codiology_mini.png">
+    
+    <!-- Tailwind CSS -->
+    <script>
+        tailwind = window.tailwind || {};
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        rstar: {
+                            black: '#000000',
+                            dark: '#0b0b0b',
+                            card: '#151515',
+                            border: '#262626',
+                            red: '#fcaf17', /* Using Codiology Yellow/Orange as accent, or change to #d0021b for Rockstar Red */
+                            red_hover: '#e69b00',
+                            gray: '#999999'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+                        display: ['Arial Black', 'Arial', 'sans-serif']
+                    },
+                    maxWidth: {
+                        'content': '1400px'
+                    }
+                }
+            }
+        };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b0b0b; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+
+        /* Typography overrides for Rockstar feel */
+        .heading-rockstar {
+            font-family: 'Arial Black', sans-serif;
+            letter-spacing: -0.5px;
+        }
+
+        /* Gradient overlay for hero */
+        .hero-overlay {
+            background: linear-gradient(90deg, #000 0%, #000 30%, transparent 100%);
+        }
+        
+        @media (max-width: 1024px) {
+            .hero-overlay {
+                background: linear-gradient(180deg, #000 0%, transparent 100%);
+            }
+        }
+
+        /* Diagonal stripes pattern for add-on cards */
+        .stripe-pattern {
+            background-image: linear-gradient(135deg, #1f1f1f 25%, transparent 25%, transparent 50%, #1f1f1f 50%, #1f1f1f 75%, transparent 75%, transparent 100%);
+            background-size: 20px 20px;
+        }
+
+        /* FAQ details styling */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        
+        .feature-image {
+            transition: transform 0.5s ease;
+        }
+        .feature-container:hover .feature-image {
+            transform: scale(1.02);
+        }
+        .top
+        {
+            align-items: flex-end;
+        }
+
+        /* Glow Effects */
+        .glow {
+            box-shadow: 0 0 20px rgba(252, 175, 23, 0.5),
+                        0 0 40px rgba(252, 175, 23, 0.3),
+                        0 0 60px rgba(252, 175, 23, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .glow:hover {
+            box-shadow: 0 0 30px rgba(252, 175, 23, 0.8),
+                        0 0 60px rgba(252, 175, 23, 0.5),
+                        0 0 90px rgba(252, 175, 23, 0.3);
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+                         0 0 20px rgba(252, 175, 23, 0.6),
+                         0 0 30px rgba(252, 175, 23, 0.4);
+        }
+        
+        .glow-border {
+            border: 2px solid rgba(252, 175, 23, 0.5);
+            box-shadow: 0 0 15px rgba(252, 175, 23, 0.4),
+                        inset 0 0 15px rgba(252, 175, 23, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .glow-border:hover {
+            border-color: rgba(252, 175, 23, 0.8);
+            box-shadow: 0 0 25px rgba(252, 175, 23, 0.6),
+                        inset 0 0 25px rgba(252, 175, 23, 0.3);
+        }
+
+        /* Pulse Animation */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(252, 175, 23, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(252, 175, 23, 0.8);
+            }
+        }
+        
+        .pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* Neon Glow for Blue Elements */
+        .neon-blue {
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.5),
+                        0 0 20px rgba(59, 130, 246, 0.3),
+                        0 0 30px rgba(59, 130, 246, 0.2);
+        }
+        
+        .neon-purple {
+            box-shadow: 0 0 10px rgba(147, 51, 234, 0.5),
+                        0 0 20px rgba(147, 51, 234, 0.3),
+                        0 0 30px rgba(147, 51, 234, 0.2);
+        }
+        
+        .neon-green {
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.5),
+                        0 0 20px rgba(34, 197, 94, 0.3),
+                        0 0 30px rgba(34, 197, 94, 0.2);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Shine Effect */
+        @keyframes shine {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 100%;
+            }
+        }
+        
+        .shine {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shine::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+    </style>
+</head>
+<body class="antialiased bg-black text-white">
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-sm border-b border-gray-900 h-16">
+        <div class="container mx-auto px-6 h-full flex justify-between items-center max-w-content">
+            <div class="flex items-center gap-8 ">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="/images/codiology_mini.png" alt="Codiology Logo" class="h-8 w-8">
+                    <span class="font-bold text-lg tracking-tight">Codiology Software</span>
+                </a>
+                <nav class="hidden md:flex gap-6 text-[11px] font-bold uppercase tracking-wider text-gray-300 top">
+                    <a href="/index.html" class="hover:text-white transition-colors">Home</a>
+                    <a href="/software.html" class="hover:text-white transition-colors">Software Store</a>
+                    <a href="https://codiologyappstore.netlify.app/" class="hover:text-white transition-colors">App Store</a>
+                    <a href="/web_development.html" class="hover:text-white transition-colors">Web Store</a>
+                    <a href="/coming.html" class="hover:text-white transition-colors">Game Store</a>
+                </nav>
+            </div>
+            <!-- <div class="flex items-center gap-6">
+                <div class="relative hidden lg:block">
+                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-xs"></i>
+                    <input type="text" class="bg-[#1a1a1a] border-none rounded-full py-1.5 pl-8 pr-4 text-xs w-48 focus:ring-1 focus:ring-white text-white placeholder-gray-500" placeholder="Search Store">
+                </div>
+                <a href="#" class="text-white"><i class="fas fa-user"></i></a>
+                <a href="#" class="text-white"><i class="fas fa-shopping-cart"></i></a>
+            </div> -->
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section class="relative h-[85vh] min-h-[600px] overflow-hidden">
+            <!-- Background Image -->
+            <div class="absolute inset-0 z-0">
+                <img src="/images/softImg/HtoJ_Software_Box.png" alt="H2J Background" class="w-full h-full object-cover">
+            </div>
+            
+            <!-- Content -->
+            <div class="absolute inset-0 z-10 flex items-center">
+                <div class="hero-overlay absolute inset-0 w-full lg:w-3/5"></div>
+                <div class="container mx-auto px-6 max-w-content relative z-20 pt-12">
+                    <div class="max-w-xl">
+                        <div class="mb-6">
+                            <h1 class="text-6xl md:text-8xl font-black italic tracking-tighter leading-none mb-2 glow-text" data-aos="fade-right" data-aos-duration="1000">H2J</h1>
+                            <span class="bg-blue-600 text-white text-xs font-bold px-2 py-1 uppercase tracking-widest inline-block transform -skew-x-12 neon-blue" data-aos="fade-left" data-aos-delay="200">Html to Jinja Converter</span>
+                        </div>
+                        
+                        <p class="text-gray-300 text-lg mb-8 font-medium leading-relaxed" data-aos="fade-up" data-aos-delay="400">
+                            Convert your HTML templates to Jinja effortlessly with H2J, streamlining your web development process.
+                        </p>
+
+                        <div class="bg-[#1a1a1a] p-6 rounded-sm border-l-4 border-rstar-red max-w-md mb-8 glow-border" data-aos="zoom-in" data-aos-delay="600">
+                            <p class="text-sm font-bold text-gray-400 uppercase mb-2">Buy H2J Pro</p>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-2xl font-bold text-white">Free</span>
+                                <span class="text-xs text-gray-500 line-through">$1.99</span>
+                            </div>
+                            <button class="w-full bg-[#d0021b] hover:bg-[#b00217] text-white font-bold py-3 px-6 uppercase tracking-wider text-sm transition-colors rounded-sm shadow-lg shadow-red-900/20 pulse-glow shine" id="buyBtn">
+                                Buy Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar Navigation -->
+            <div class="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-md border-t border-white/10 z-30">
+                <div class="container mx-auto px-6 max-w-content">
+                    <div class="flex gap-8 overflow-x-auto py-4 text-[11px] font-bold uppercase tracking-widest text-gray-400 no-scrollbar">
+                        <a href="#overview" class="text-white border-b-2 border-white pb-4 -mb-4 whitespace-nowrap">Product Overview</a>
+                        <a href="#features" class="hover:text-white transition-colors whitespace-nowrap">Key Features</a>
+                        <a href="#addons" class="hover:text-white transition-colors whitespace-nowrap">Premium Add-ons</a>
+                        <a href="#videos" class="hover:text-white transition-colors whitespace-nowrap">Videos</a>
+                        <a href="#specs" class="hover:text-white transition-colors whitespace-nowrap">Specifications</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notice Bar -->
+        <div class="bg-[#151515] py-4 border-b border-gray-800">
+            <div class="container mx-auto px-6 max-w-content flex items-start gap-4">
+                <div class="w-10 h-10 bg-[#222] rounded flex items-center justify-center flex-shrink-0 float-animation" data-aos="flip-left">
+                    <i class="fas fa-gift text-gray-400"></i>
+                </div>
+                <div data-aos="fade-left" data-aos-delay="200">
+                    <p class="text-xs text-gray-300 leading-relaxed max-w-4xl">
+                        <span class="text-white font-bold">Bonus Content:</span> Get exclusive access to our "Web Developer Starter Pack" with every purchase of H2J Pro, including templates, icons, and productivity tools to kickstart your projects.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Details -->
+        <section id="overview" class="py-16 bg-black border-b border-gray-900">
+            <div class="container mx-auto px-6 max-w-content">
+                <h2 class="text-2xl font-bold mb-8 border-l-4 border-white pl-4 glow-text" data-aos="fade-right">Software Details</h2>
+                
+                <div class="grid lg:grid-cols-3 gap-12">
+                    <!-- Left: Description -->
+                    <div class="lg:col-span-2 space-y-6 text-gray-400 text-sm leading-7" data-aos="fade-up">
+                        <p>
+                            Experience productivity like never before with H2J. Built for developers, writers, and creators, H2J isn't just a converter—it's a complete focus ecosystem. 
+                        </p>
+                        <p>
+                            Seamlessly transform your HTML files into Jinja templates with just a few clicks. H2J intelligently maps HTML elements to Jinja syntax, preserving your design while optimizing for Flask and Django frameworks.
+                        </p>
+                        <p>
+                            But H2J goes beyond conversion. Our Hyper-Focus Mode eliminates distractions by muting notifications and dimming secondary monitors, allowing you to dive deep into your work. Customize your timer settings to fit your workflow, and let our built-in website blocker keep you on track.
+                        </p>
+                    </div>
+
+                    <!-- Right: Meta Data -->
+                    <div class="lg:col-span-1 border-t lg:border-t-0 lg:border-l border-gray-800 lg:pl-12 pt-8 lg:pt-0" data-aos="fade-left" data-aos-delay="200">
+                        <div class="flex items-start gap-4 mb-8">
+                            <div class="w-16 h-20 bg-gray-800 flex flex-col items-center justify-center border border-gray-700">
+                                <span class="text-2xl font-black italic">E</span>
+                                <span class="text-[8px] uppercase font-bold mt-1 border-t border-gray-600 pt-1 w-full text-center">Everyone</span>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-bold mb-2 text-white">ESRB Rating</h3>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Suitable for all ages. No content that would be inappropriate for children.
+                                </p>
+                        </div>
+
+                        <div class="space-y-4 text-xs">
+                            <div class="flex justify-between border-b border-gray-800 pb-2">
+                                <span class="text-gray-500">Developer</span>
+                                <span class="text-white font-bold">Shahriar Ahmed Riaz</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-800 pb-2">
+                                <span class="text-gray-500">Publisher</span>
+                                <span class="text-white font-bold">Codiology</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-800 pb-2">
+                                <span class="text-gray-500">Release Date</span>
+                                <span class="text-white font-bold">Dec 12, 2025</span>
+                            </div>
+                            <div class="flex justify-between border-b border-gray-800 pb-2">
+                                <span class="text-gray-500">Platform</span>
+                                <span class="text-white font-bold">Windows</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscription Banner (GTA+ Style) -->
+        <section class="py-12 bg-gradient-to-r from-purple-900 to-indigo-900" data-aos="fade-up">
+            <div class="container mx-auto px-6 max-w-content flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="flex items-center gap-6" data-aos="zoom-in">
+                    <div class="w-16 h-16 bg-white text-purple-900 font-black text-3xl flex items-center justify-center rounded shadow-xl italic pulse-glow">
+                        C+
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold uppercase italic text-white mb-1">Join Codiology Plus</h3>
+                        <p class="text-purple-200 text-sm max-w-xl">
+                            Get exclusive access to all Codiology premium software, cloud backup, and monthly asset drops for one low monthly price.
+                        </p>
+                    </div>
+                </div>
+                <button class="border-2 border-white text-white hover:bg-white hover:text-purple-900 px-8 py-3 font-bold uppercase text-xs tracking-widest transition-all shine" data-aos="zoom-in" data-aos-delay="200">
+                    Learn More
+                </button>
+            </div>
+        </section>
+
+        <!-- Key Features (Zig-Zag Layout) -->
+        <section id="features" class="py-24 bg-[#0b0b0b] space-y-32">
+            <!-- Feature 1 -->
+            <div class="container mx-auto px-6 max-w-content feature-container">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 lg:order-1" data-aos="fade-right" data-aos-duration="1000">
+                        <img src="/images/h2j/ss1.png" alt="Focus Mode" class="w-full shadow-2xl rounded-sm feature-image glow-border">
+                    </div>
+                    <div class="order-1 lg:order-2" data-aos="fade-left" data-aos-duration="1000">
+                        <h3 class="text-3xl font-black uppercase mb-4 text-white glow-text">Easy to convert from file and folder</h3>
+                        <div class="h-1 w-20 bg-blue-600 mb-6 neon-blue"></div>
+                        <p class="text-gray-400 text-lg leading-relaxed">
+                            Simply select your HTML files or entire folders, and let H2J handle the rest. Our advanced parsing engine ensures accurate conversion, maintaining your original structure while optimizing for Jinja syntax.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="container mx-auto px-6 max-w-content feature-container">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-1" data-aos="fade-right" data-aos-duration="1000">
+                        <h3 class="text-3xl font-black uppercase mb-4 text-white glow-text">Lightweight and fast</h3>
+                        <div class="h-1 w-20 bg-purple-600 mb-6 neon-purple"></div>
+                        <p class="text-gray-400 text-lg leading-relaxed">
+                            H2J is designed to be fast and efficient, ensuring that your conversion process is quick and hassle-free. Enjoy a smooth user experience with our intuitive interface and responsive design.
+                        </p>
+                    </div>
+                    <div class="order-2" data-aos="fade-left" data-aos-duration="1000">
+                        <img src="/images/h2j/ss2.png" alt="Analytics" class="w-full shadow-2xl rounded-sm feature-image glow-border">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="container mx-auto px-6 max-w-content feature-container">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 lg:order-1" data-aos="fade-right" data-aos-duration="1000">
+                        <img src="/images/h2j/ss3.png" alt="Task Management" class="w-full shadow-2xl rounded-sm feature-image glow-border">
+                    </div>
+                    <div class="order-1 lg:order-2" data-aos="fade-left" data-aos-duration="1000">
+                        <h3 class="text-3xl font-black uppercase mb-4 text-white glow-text">All-time success</h3>
+                        <div class="h-1 w-20 bg-green-600 mb-6 neon-green"></div>
+                        <p class="text-gray-400 text-lg leading-relaxed">
+                            Join thousands of satisfied users who have transformed their workflow with H2J. Our commitment to quality and user satisfaction has made us a trusted choice for developers worldwide.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Feature 4 -->
+            <!-- <div class="container mx-auto px-6 max-w-content feature-container">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-1" data-aos="fade-right" data-aos-duration="1000">
+                        <h3 class="text-3xl font-black uppercase mb-4 text-white glow-text">Guide for Focus</h3>
+                        <div class="h-1 w-20 bg-pink-600 mb-6" style="box-shadow: 0 0 10px rgba(236, 72, 153, 0.5), 0 0 20px rgba(236, 72, 153, 0.3);"></div>
+                        <p class="text-gray-400 text-lg leading-relaxed">
+                            Immerse yourself in curated ambient soundscapes designed to enhance concentration. Choose from genres like Lo-Fi Beats, Nature Sounds, and Instrumental Music, or create your own custom mixes with our integrated audio mixer.
+                        </p>
+                    </div>
+                    <div class="order-2" data-aos="fade-left" data-aos-duration="1000">
+                        <img src="/images/flowmino/ss3.png" alt="Audio Mixer" class="w-full shadow-2xl rounded-sm feature-image glow-border">
+                    </div>
+                </div>
+            </div> -->
+        </section>
+
+        <!-- New Career Builder / Exclusive Content Grid -->
+        <!-- <section class="py-20 bg-black">
+            <div class="container mx-auto px-6 max-w-content">
+                <h2 class="text-2xl font-bold mb-10 text-white glow-text" data-aos="fade-right">New For You</h2>
+                
+                <div class="grid md:grid-cols-4 gap-4">
+                    <div class="group relative overflow-hidden cursor-pointer glow-border" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="/images/soft/flowmino_ban.jpeg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black to-transparent w-full">
+                            <h4 class="font-bold uppercase text-white">Student Pack</h4>
+                        </div>
+                    </div> -->
+                    <!-- <div class="group relative overflow-hidden cursor-pointer">
+                        <img src="https://placehold.co/400x600/333/fff?text=Developer+Workflow" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black to-transparent w-full">
+                            <h4 class="font-bold uppercase text-white">Developer Pack</h4>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden cursor-pointer">
+                        <img src="https://placehold.co/400x600/444/fff?text=Writer+Workflow" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black to-transparent w-full">
+                            <h4 class="font-bold uppercase text-white">Writer Pack</h4>
+                        </div>
+                    </div>
+                    <div class="group relative overflow-hidden cursor-pointer">
+                        <img src="https://placehold.co/400x600/555/fff?text=Designer+Workflow" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 opacity-80 group-hover:opacity-100">
+                        <div class="absolute bottom-0 left-0 p-4 bg-gradient-to-t from-black to-transparent w-full">
+                            <h4 class="font-bold uppercase text-white">Designer Pack</h4>
+                        </div>
+                    </div>
+                </div> -->
+            <!-- </div>
+        </section> -->
+
+        <!-- Buy Add-ons (Shark Cards Style) -->
+        <!-- <section id="addons" class="py-20 bg-[#0f0f0f] border-t border-gray-900">
+            <div class="container mx-auto px-6 max-w-content">
+                <h2 class="text-2xl font-bold mb-2 text-white">Enhance Your Experience</h2>
+                <p class="text-gray-400 text-sm mb-10">Purchase premium theme packs and sound libraries to customize Flowmino.</p>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4"> -->
+                    <!-- Card 1 -->
+                    <!-- <div class="bg-[#1a1a1a] rounded overflow-hidden group hover:ring-2 hover:ring-white transition-all">
+                        <div class="h-32 bg-blue-900 relative p-4 flex items-center justify-center stripe-pattern">
+                            <span class="font-black italic text-2xl uppercase z-10 drop-shadow-md">Cyber Pack</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-sm text-white mb-1">Cyberpunk Theme</h4>
+                            <p class="text-[10px] text-gray-400 mb-4">Neon UI + Synthwave Sounds</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-white">$2.99</span>
+                                <button class="bg-transparent border border-gray-600 hover:border-white text-[10px] px-2 py-1 uppercase font-bold text-white">Add</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- Card 2 -->
+                    <!-- <div class="bg-[#1a1a1a] rounded overflow-hidden group hover:ring-2 hover:ring-white transition-all">
+                        <div class="h-32 bg-yellow-700 relative p-4 flex items-center justify-center stripe-pattern">
+                            <span class="font-black italic text-2xl uppercase z-10 drop-shadow-md">Nature Pack</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-sm text-white mb-1">Forest Sounds</h4>
+                            <p class="text-[10px] text-gray-400 mb-4">Rain, River, Wind Audio</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-white">$1.99</span>
+                                <button class="bg-transparent border border-gray-600 hover:border-white text-[10px] px-2 py-1 uppercase font-bold text-white">Add</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                    <!-- Card 3 -->
+                    <!-- <div class="bg-[#1a1a1a] rounded overflow-hidden group hover:ring-2 hover:ring-white transition-all">
+                        <div class="h-32 bg-gray-200 relative p-4 flex items-center justify-center stripe-pattern">
+                            <span class="font-black italic text-2xl uppercase z-10 text-black drop-shadow-md">Minimal</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-sm text-white mb-1">Mono Theme</h4>
+                            <p class="text-[10px] text-gray-400 mb-4">High Contrast B&W UI</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-white">$0.99</span>
+                                <button class="bg-transparent border border-gray-600 hover:border-white text-[10px] px-2 py-1 uppercase font-bold text-white">Add</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                     <!-- Card 4 -->
+                     <!-- <div class="bg-[#1a1a1a] rounded overflow-hidden group hover:ring-2 hover:ring-white transition-all">
+                        <div class="h-32 bg-red-900 relative p-4 flex items-center justify-center stripe-pattern">
+                            <span class="font-black italic text-2xl uppercase z-10 text-white drop-shadow-md">Red Dead</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-sm text-white mb-1">Outlaw Theme</h4>
+                            <p class="text-[10px] text-gray-400 mb-4">Western UI + Acoustic Guitar</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-white">$2.99</span>
+                                <button class="bg-transparent border border-gray-600 hover:border-white text-[10px] px-2 py-1 uppercase font-bold text-white">Add</button>
+                            </div>
+                        </div>
+                    </div> -->
+
+                     <!-- Card 5 -->
+                     <!-- <div class="bg-[#1a1a1a] rounded overflow-hidden group hover:ring-2 hover:ring-white transition-all">
+                        <div class="h-32 bg-purple-900 relative p-4 flex items-center justify-center stripe-pattern">
+                            <span class="font-black italic text-2xl uppercase z-10 text-white drop-shadow-md">Lofi Girl</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-bold text-sm text-white mb-1">Study Beats</h4>
+                            <p class="text-[10px] text-gray-400 mb-4">100+ Lofi Tracks</p>
+                            <div class="flex justify-between items-center">
+                                <span class="font-bold text-white">$4.99</span>
+                                <button class="bg-transparent border border-gray-600 hover:border-white text-[10px] px-2 py-1 uppercase font-bold text-white">Add</button>
+                            </div>
+                        </div>
+                    </div> -->
+                <!-- </div>
+            </div>
+        </section> -->
+
+        <!-- Videos & Media -->
+        <!-- <section id="videos" class="py-20 bg-black">
+            <div class="container mx-auto px-6 max-w-content">
+                <h2 class="text-2xl font-bold mb-8 text-white glow-text" data-aos="fade-right">Videos</h2>
+                
+                <div class="grid lg:grid-cols-3 gap-4 h-[500px]">
+                    <div class="lg:col-span-2 h-full bg-[#111] relative group cursor-pointer glow-border" data-aos="fade-up">
+                        <img src="/images/h2j/flowmino_ban.jpeg" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="w-20 h-20 bg-black/50 rounded-full flex items-center justify-center border-2 border-white group-hover:bg-red-600 group-hover:border-red-600 transition-colors">
+                                <i class="fas fa-play text-2xl ml-1"></i>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-0 left-0 p-6 bg-gradient-to-t from-black to-transparent w-full">
+                            <h3 class="font-bold uppercase text-2xl">Official Launch Trailer</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-1 grid grid-rows-2 gap-4 h-full">
+                        <div class="bg-[#111] relative group cursor-pointer h-full glow-border" data-aos="fade-up" data-aos-delay="200">
+                            <img src="https://placehold.co/600x400/222/fff?text=Walkthrough" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-play-circle text-4xl opacity-80 group-hover:opacity-100"></i>
+                            </div>
+                            <div class="absolute bottom-2 left-4">
+                                <span class="text-sm font-bold uppercase shadow-black drop-shadow-md">Feature Walkthrough</span>
+                            </div>
+                        </div>
+                        <div class="bg-[#111] relative group cursor-pointer h-full glow-border" data-aos="fade-up" data-aos-delay="400">
+                            <img src="https://placehold.co/600x400/333/fff?text=Dev+Diary" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <i class="fas fa-play-circle text-4xl opacity-80 group-hover:opacity-100"></i>
+                            </div>
+                            <div class="absolute bottom-2 left-4">
+                                <span class="text-sm font-bold uppercase shadow-black drop-shadow-md">Developer Diary</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        <!-- Screenshots Carousel (Grid for simplicity) -->
+        <!-- <section class="py-12 bg-black pb-24">
+            <div class="container mx-auto px-6 max-w-content">
+                <h2 class="text-2xl font-bold mb-8 text-white glow-text" data-aos="fade-right">Screenshots</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <img src="/images/h2j/ss.png" class="w-full rounded-sm hover:opacity-80 cursor-pointer transition-opacity border border-gray-800 glow-border" data-aos="flip-left" data-aos-delay="100">
+                    <img src="/images/flowmino/ss1.png" class="w-full rounded-sm hover:opacity-80 cursor-pointer transition-opacity border border-gray-800 glow-border" data-aos="flip-left" data-aos-delay="200">
+                    <img src="/images/flowmino/ss2.png" class="w-full rounded-sm hover:opacity-80 cursor-pointer transition-opacity border border-gray-800 glow-border" data-aos="flip-left" data-aos-delay="300">
+                    <img src="/images/flowmino/ss3.png" class="w-full rounded-sm hover:opacity-80 cursor-pointer transition-opacity border border-gray-800 glow-border" data-aos="flip-left" data-aos-delay="400">
+                </div>
+            </div>
+        </section> -->
+
+        <!-- System Requirements -->
+        <section id="specs" class="py-20 bg-[#0f0f0f] border-t border-gray-900">
+            <div class="container mx-auto px-6 max-w-content">
+                <h2 class="text-2xl font-bold mb-8 text-white glow-text" data-aos="fade-right">System Requirements</h2>
+                
+                <div class="overflow-x-auto" data-aos="fade-up">
+                    <table class="w-full text-left text-xs text-gray-400">
+                        <thead>
+                            <tr class="border-b border-gray-700">
+                                <th class="py-4 w-32 text-white font-bold uppercase">Spec</th>
+                                <th class="py-4 text-white font-bold uppercase">Minimum</th>
+                                <th class="py-4 text-white font-bold uppercase">Recommended</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800">
+                            <tr>
+                                <td class="py-4 font-bold text-gray-300">OS</td>
+                                <td class="py-4">Windows 10</td>
+                                <td class="py-4">Windows 11</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 font-bold text-gray-300">Processor</td>
+                                <td class="py-4">Intel Core i3 or AMD equivalent</td>
+                                <td class="py-4">Intel Core i5</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 font-bold text-gray-300">Memory</td>
+                                <td class="py-4">2 GB RAM</td>
+                                <td class="py-4">4 GB RAM</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 font-bold text-gray-300">.NET Framework</td>
+                                <td class="py-4">7</td>
+                                <td class="py-4">8</td>
+                            </tr>
+                            <tr>
+                                <td class="py-4 font-bold text-gray-300">Storage</td>
+                                <td class="py-4">10 MB available space</td>
+                                <td class="py-4">50 MB (for H2J Assets)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <p class="mt-8 text-[10px] text-gray-500 max-w-3xl leading-relaxed">
+                    Over time downloadable content and programming changes will change the system requirements for this software. Please refer to your hardware manufacturer and current support information. Some system components such as mobile chipsets, integrated, and AGP graphics cards may be incompatible. Unlisted specifications may not be supported by publisher.
+                </p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="py-20 bg-black border-t border-gray-900">
+            <div class="container mx-auto px-6 max-w-content">
+                <h2 class="text-2xl font-bold mb-8 text-white uppercase glow-text" data-aos="fade-right">FAQ</h2>
+                
+                <div class="space-y-4 max-w-3xl">
+                    <details class="group bg-[#111] rounded overflow-hidden glow-border" data-aos="fade-up" data-aos-delay="100">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-sm hover:bg-[#222] transition-colors">
+                            <span>How do I download my digital purchase?</span>
+                            <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                        </summary>
+                        <div class="text-gray-400 text-xs p-4 pt-0 leading-relaxed border-t border-gray-800 mt-2 pt-4">
+                            After purchase, you will receive an email with a download link and a license key. You can also download the installer directly from your Codiology account dashboard.
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-[#111] rounded overflow-hidden glow-border" data-aos="fade-up" data-aos-delay="200">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-sm hover:bg-[#222] transition-colors">
+                            <span>Can I use H2J on multiple devices?</span>
+                            <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                        </summary>
+                        <div class="text-gray-400 text-xs p-4 pt-0 leading-relaxed border-t border-gray-800 mt-2 pt-4">
+                            Yes, a single license allows installation on up to 3 devices. Your tasks and settings will sync automatically via the cloud.
+                        </div>
+                    </details>
+
+                    <details class="group bg-[#111] rounded overflow-hidden glow-border" data-aos="fade-up" data-aos-delay="300">
+                        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-4 text-sm hover:bg-[#222] transition-colors">
+                            <span>What is the refund policy?</span>
+                            <span class="transition group-open:rotate-180"><i class="fas fa-chevron-down"></i></span>
+                        </summary>
+                        <div class="text-gray-400 text-xs p-4 pt-0 leading-relaxed border-t border-gray-800 mt-2 pt-4">
+                            We offer a 14-day money-back guarantee if you are not satisfied with Flowmino, provided the usage time does not exceed 2 hours.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#050505] pt-20 pb-10 border-t border-gray-900">
+        <div class="container mx-auto px-6 flex flex-col items-center">
+            
+            <div class="mb-8">
+                <img src="/images/codiologyMain.png" alt="R*" class="h-16 w-auto opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all">
+            </div>
+
+            <div class="w-full flex flex-col md:flex-row justify-between items-end border-t border-gray-800 pt-8 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                <div class="flex gap-6 mb-4 md:mb-0">
+                    <a href="#" class="hover:text-white transition-colors">Contact</a>
+                    <a href="#" class="hover:text-white transition-colors">Support</a>
+                    <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-white transition-colors">Legal</a>
+                </div>
+                
+                <div class="flex items-center gap-2 cursor-pointer hover:text-white">
+                    <i class="fas fa-globe"></i> English <i class="fas fa-chevron-down ml-1"></i>
+                </div>
+            </div>
+
+            <div class="w-full mt-8 text-[10px] text-gray-600 text-center md:text-left">
+                <p class="leading-relaxed">
+                    © 2025 Codiology, Inc. H2J, Codiology, and the Codiology logo are trademarks of Codiology Interactive. All other marks and trademarks are the property of their respective owners. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Library Script -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Anime.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: false,
+            offset: 100,
+            delay: 100,
+        });
+
+        // Smooth scrolling for bottom bar nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Anime.js animations on page load
+        window.addEventListener('load', function() {
+            // Animate icons floating
+            anime({
+                targets: '.fa-clock, .fa-chart-bar, .fa-music, .fa-sync',
+                translateY: [-10, 10],
+                direction: 'alternate',
+                loop: true,
+                easing: 'easeInOutSine',
+                duration: 2000,
+                delay: anime.stagger(200)
+            });
+
+            // Buy button pulse animation
+            const buyBtn = document.getElementById('buyBtn');
+            if(buyBtn) {
+                buyBtn.addEventListener('mouseenter', function() {
+                    anime({
+                        targets: buyBtn,
+                        scale: [1, 1.05, 1],
+                        duration: 600,
+                        easing: 'easeInOutQuad'
+                    });
+                });
+            }
+
+            // Feature images scale on scroll
+            const featureImages = document.querySelectorAll('.feature-image');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            scale: [0.9, 1],
+                            opacity: [0, 1],
+                            duration: 1200,
+                            easing: 'easeOutExpo'
+                        });
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            featureImages.forEach(img => observer.observe(img));
+
+            // Animate navigation links
+            anime({
+                targets: 'nav a',
+                translateY: [-20, 0],
+                opacity: [0, 1],
+                delay: anime.stagger(100, {start: 500}),
+                easing: 'easeOutExpo',
+                duration: 800
+            });
+
+            // Animate price box
+            anime({
+                targets: '.bg-\\[\\#1a1a1a\\].p-6.rounded-sm',
+                scale: [0.8, 1],
+                opacity: [0, 1],
+                duration: 1000,
+                delay: 800,
+                easing: 'easeOutElastic(1, .8)'
+            });
+
+            // Scroll-triggered animations for screenshots
+            const screenshots = document.querySelectorAll('.grid.grid-cols-2.md\\:grid-cols-4 img');
+            const screenshotObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        anime({
+                            targets: entry.target,
+                            rotateY: [90, 0],
+                            opacity: [0, 1],
+                            delay: index * 150,
+                            duration: 800,
+                            easing: 'easeOutExpo'
+                        });
+                        screenshotObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            screenshots.forEach(img => screenshotObserver.observe(img));
+
+            // Animate FAQ items when opened
+            document.querySelectorAll('details').forEach(detail => {
+                detail.addEventListener('toggle', function() {
+                    if(this.open) {
+                        const content = this.querySelector('div');
+                        anime({
+                            targets: content,
+                            opacity: [0, 1],
+                            translateY: [-10, 0],
+                            duration: 400,
+                            easing: 'easeOutQuad'
+                        });
+                    }
+                });
+            });
+
+            // Continuous glow pulse for C+ icon
+            anime({
+                targets: '.w-16.h-16.bg-white',
+                scale: [1, 1.1, 1],
+                duration: 2000,
+                loop: true,
+                easing: 'easeInOutQuad'
+            });
+        });
+
+        // Parallax effect for hero section
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('.absolute.inset-0.z-0 img');
+            if(heroImage && scrolled < 800) {
+                heroImage.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
